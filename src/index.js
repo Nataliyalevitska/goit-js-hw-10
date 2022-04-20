@@ -12,9 +12,9 @@ const info = document.querySelector('.country-info');
 const createMarkupLi = obj => {
   const markup = obj
     .map(
-      ({ name: { official }, flags: { svg } }) => `<div class= "js-list">
+      ({ name: { official }, flags: { svg } }) => `<div class ="js-list">
         <div>
-        <img src = "${svg}alt= "flag" width= "20" class= "js-img">
+        <img src="${svg}" alt="flag" width="20" class ="js-img">
         </div>
         <h1>${official}</h1>
         </div>`,
@@ -23,27 +23,30 @@ const createMarkupLi = obj => {
   clearMarkup();
   countryList.innerHTML = markup;
 };
+
 const createMarkupList = dataList => {
   const markupList = dataList
     .map(({ name: { official }, capital, population, flags: { svg }, languages }) => {
       const languagesKey = Object.values(languages).join(', ');
-      return `<div classs = "js-list">
+      return `<div class ="js-list">
         <div>
-        <img src = "${svg}" alt="flag" width = "20" class= "js-img">
+        <img src="${svg}" alt="flag" width="20" class ="js-img">
         </div>
         <h1>${official}</h1>
         </div>
-        <ul>
-        <li class="js-item">Capital:<span class="js-icon">${capital}</span></li>
-        <li class="js-item">Population:<span class = "js-icon">${population}</span></li>
-        <li class ="js-item"Languages:<span class ="js-icon">${languagesKey}</span></li>
-        </ul>`;
+<ul>
+  <li class="js-item">Capital:<span class ="js-icon">${capital}</span></li>
+  <li class="js-item">Population:<span class ="js-icon">${population}</span></li>
+  <li class="js-item">Languages:<span class ="js-icon">${languagesKey}</span></li>
+</ul>
+`;
     })
     .join('');
   clearMarkup();
   info.innerHTML = markupList;
 };
-const hendlerCountries = e => {
+
+const hebdlerCountrys = e => {
   const inputName = e.target.value.trim();
   if (!inputName) {
     return;
@@ -73,4 +76,5 @@ const clearMarkup = () => {
   info.innerHTML = '';
   countryList.innerHTML = '';
 };
-input.addEventListener('input', debounce(hendlerCountries, DEBOUNCE_DELAY));
+
+input.addEventListener('input', debounce(hebdlerCountrys, DEBOUNCE_DELAY));
