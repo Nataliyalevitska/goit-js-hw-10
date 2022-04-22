@@ -2,6 +2,7 @@ import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import fetchCountries from './services/fetchCountries.js';
+import countriesCard from './templates/countries-card.hbs';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -9,20 +10,26 @@ const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const info = document.querySelector('.country-info');
 
-const createMarkupLi = obj => {
-  const markup = obj
-    .map(
-      ({ name: { official }, flags: { svg } }) => `<div class ="js-list">
-        <div>
-        <img src="${svg}" alt="flag" width="20" class ="js-img">
-        </div>
-        <h1>${official}</h1>
-        </div>`,
-    )
-    .join('');
+const createMarkupLi = objs => {
+  const markup = objs.map(obj => countriesCard(obj)).join('');
   clearMarkup();
   countryList.innerHTML = markup;
 };
+
+// const createMarkupLi = obj => {
+//   const markup = obj
+//     .map(
+//       ({ name: { official }, flags: { svg } }) => `<div class ="js-list">
+//         <div>
+//         <img src="${svg}" alt="flag" width="20" class ="js-img">
+//         </div>
+//         <h1>${official}</h1>
+//         </div>`,
+//     )
+//     .join('');
+// clearMarkup();
+// countryList.innerHTML = markup;
+// };
 
 const createMarkupList = dataList => {
   const markupList = dataList
@@ -30,7 +37,7 @@ const createMarkupList = dataList => {
       const languagesKey = Object.values(languages).join(', ');
       return `<div class ="js-list">
         <div>
-        <img src="${svg}" alt="flag" width="20" class ="js-img">
+        <img src="${svg}" alt="flag" width="40" class ="js-img">
         </div>
         <h1>${official}</h1>
         </div>

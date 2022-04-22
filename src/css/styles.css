@@ -10,6 +10,7 @@ body {
   background-color: #b8ed93;
   color: #4a278b;
   line-height: 1.5;
+
 }
 
 #search-box {
@@ -18,4 +19,13 @@ body {
   padding: 18px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+.js-list{
+  display: flex;
+  align-items: center;
+  
+}
+.js-img{
+  margin-right: 20px;
+
 }
